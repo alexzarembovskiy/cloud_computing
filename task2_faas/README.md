@@ -12,7 +12,7 @@ Invoke ingest func using HTTP Request --> Receive event in AWS Kinesis --> Invok
 ### 3) How to make a HTTP request
 
 To make a HTTP request awscurl was used. Here is example of request without secrets:
-awscurl -v -X POST https://qkk2okaq236ri5bd7fmihqomha0ydayg.lambda-url.eu-central-1.on.aws/ --data '{"event_attribute":"http request test"}' --region eu-central-1 --service lambda --access_key (PASTE ACCESS KEY) --secret_key (PASTE SECRET KEY)
+- awscurl -v -X POST https://qkk2okaq236ri5bd7fmihqomha0ydayg.lambda-url.eu-central-1.on.aws/ --data '{"event_attribute":"http request test"}' --region eu-central-1 --service lambda --access_key (PASTE ACCESS KEY) --secret_key (PASTE SECRET KEY)
 
 ### 4) Used technologies
 
