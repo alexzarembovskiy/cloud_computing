@@ -2,3 +2,7 @@ task1_tf_intro/.terraform.lock.hcl
 task1_tf_intro/terraform.tfstate.backup
 task1_tf_intro/.terraform/terraform.tfstate
 task1_tf_intro/.terraform/providers/registry.terraform.io/hashicorp/aws/4.67.0/linux_amd64/terraform-provider-aws_v4.67.0_x5
+task3_tf_faas/.terraform/providers/registry.terraform.io/hashicorp/aws/4.67.0/linux_amd64/terraform-provider-aws_v4.67.0_x5
+task3_tf_faas/.terraform/providers/registry.terraform.io/hashicorp/archive/2.3.0/linux_amd64/terraform-provider-archive_v2.3.0_x5
+task3_tf_faas/terraform.tfstate.backup
+task3_tf_faas/.terraform.lock.hcl
