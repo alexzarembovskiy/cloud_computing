@@ -1,4 +1,4 @@
-# Add database to the FaaS project
+# Database backup/restore
 
 ### 1) Files description
 
