@@ -1,0 +1,703 @@
+Check: CKV_AWS_45: "Ensure no hard-coded secrets exist in lambda environment"
+        PASSED for resource: aws_lambda_function.consume_func
+        File: /consume_func.tf:9-20
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_3
+Check: CKV_AWS_117: "Ensure that AWS Lambda function is configured inside a VPC"
+        PASSED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1
+Check: CKV_AWS_45: "Ensure no hard-coded secrets exist in lambda environment"
+        PASSED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_3
+Check: CKV_AWS_133: "Ensure that RDS instances has backup policy"
+        PASSED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-rds-instances-have-backup-policy
+Check: CKV_AWS_211: "Ensure RDS uses a modern CaCert"
+        PASSED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/ensure-aws-rds-uses-a-modern-cacert
+Check: CKV_AWS_45: "Ensure no hard-coded secrets exist in lambda environment"
+        PASSED for resource: aws_lambda_function.ingest_func
+        File: /ingest_func.tf:10-21
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_3
+Check: CKV_AWS_258: "Ensure that Lambda function URLs AuthType is not None"
+        PASSED for resource: aws_lambda_function_url.ingest_func_url
+        File: /ingest_func.tf:24-36
+        Guide: https://docs.bridgecrew.io/docs/ensure-aws-authtype-for-your-lambda-function-urls-is-defined
+Check: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+        PASSED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_s3_24
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+        PASSED for resource: aws.default
+        File: /secutiry.tf:1-3
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_5
+Check: CKV_AWS_355: "Ensure no IAM policies documents allow "*" as a statement's resource"
+        PASSED for resource: aws_iam_role_policy.lambda_policy
+        File: /secutiry.tf:5-10
+Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+        PASSED for resource: aws_iam_role_policy.lambda_policy
+        File: /secutiry.tf:5-10
+        Guide: https://docs.bridgecrew.io/docs/iam_47
+Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+        PASSED for resource: aws_iam_role_policy.lambda_policy
+        File: /secutiry.tf:5-10
+        Guide: https://docs.bridgecrew.io/docs/iam_48
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+        PASSED for resource: aws_iam_role.lambda_role
+        File: /secutiry.tf:12-16
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_44
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+        PASSED for resource: aws_iam_role.lambda_role
+        File: /secutiry.tf:12-16
+Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+        PASSED for resource: aws_iam_role.lambda_role
+        File: /secutiry.tf:12-16
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_iam_45
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+        PASSED for resource: aws_iam_role_policy_attachment.iam_role_policy_attachment_lambda_vpc_access_execution
+        File: /secutiry.tf:18-21
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+        PASSED for resource: aws_iam_role.lambda_role
+        File: /secutiry.tf:12-16
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+        PASSED for resource: aws_iam_role_policy_attachment.iam_role_policy_attachment_lambda_vpc_access_execution
+        File: /secutiry.tf:18-21
+Check: CKV2_AWS_40: "Ensure AWS IAM policy does not allow full IAM privileges"
+        PASSED for resource: aws_iam_role_policy.lambda_policy
+        File: /secutiry.tf:5-10
+Check: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+        PASSED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/s3_2-acl-write-permissions-everyone
+Check: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+        PASSED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/s3_1-acl-read-permissions-everyone
+Check: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+        PASSED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/s3_14-data-encrypted-at-rest
+Check: CKV_AWS_117: "Ensure that AWS Lambda function is configured inside a VPC"
+        FAILED for resource: aws_lambda_function.consume_func
+        File: /consume_func.tf:9-20
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1
+
+                9  | resource "aws_lambda_function" "consume_func" {
+                10 | 
+                11 |   filename      = local.lambda_consume_zip_location
+                12 |   function_name = "consume_func"
+                13 |   role          = aws_iam_role.lambda_role.arn
+                14 |   handler       = "consume_func.lambda_handler"
+                15 | 
+                16 |   source_code_hash = data.archive_file.lambda_consume.output_base64sha256
+                17 | 
+                18 |   runtime = "python3.10"
+                19 | 
+                20 | }
+
+Check: CKV_AWS_115: "Ensure that AWS Lambda function is configured for function-level concurrent execution limit"
+        FAILED for resource: aws_lambda_function.consume_func
+        File: /consume_func.tf:9-20
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit
+
+                9  | resource "aws_lambda_function" "consume_func" {
+                10 | 
+                11 |   filename      = local.lambda_consume_zip_location
+                12 |   function_name = "consume_func"
+                13 |   role          = aws_iam_role.lambda_role.arn
+                14 |   handler       = "consume_func.lambda_handler"
+                15 | 
+                16 |   source_code_hash = data.archive_file.lambda_consume.output_base64sha256
+                17 | 
+                18 |   runtime = "python3.10"
+                19 | 
+                20 | }
+
+Check: CKV_AWS_272: "Ensure AWS Lambda function is configured to validate code-signing"
+        FAILED for resource: aws_lambda_function.consume_func
+        File: /consume_func.tf:9-20
+
+                9  | resource "aws_lambda_function" "consume_func" {
+                10 | 
+                11 |   filename      = local.lambda_consume_zip_location
+                12 |   function_name = "consume_func"
+                13 |   role          = aws_iam_role.lambda_role.arn
+                14 |   handler       = "consume_func.lambda_handler"
+                15 | 
+                16 |   source_code_hash = data.archive_file.lambda_consume.output_base64sha256
+                17 | 
+                18 |   runtime = "python3.10"
+                19 | 
+                20 | }
+
+Check: CKV_AWS_116: "Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)"
+        FAILED for resource: aws_lambda_function.consume_func
+        File: /consume_func.tf:9-20
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
+
+                9  | resource "aws_lambda_function" "consume_func" {
+                10 | 
+                11 |   filename      = local.lambda_consume_zip_location
+                12 |   function_name = "consume_func"
+                13 |   role          = aws_iam_role.lambda_role.arn
+                14 |   handler       = "consume_func.lambda_handler"
+                15 | 
+                16 |   source_code_hash = data.archive_file.lambda_consume.output_base64sha256
+                17 | 
+                18 |   runtime = "python3.10"
+                19 | 
+                20 | }
+
+Check: CKV_AWS_50: "X-ray tracing is enabled for Lambda"
+        FAILED for resource: aws_lambda_function.consume_func
+        File: /consume_func.tf:9-20
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_serverless_4
+
+                9  | resource "aws_lambda_function" "consume_func" {
+                10 | 
+                11 |   filename      = local.lambda_consume_zip_location
+                12 |   function_name = "consume_func"
+                13 |   role          = aws_iam_role.lambda_role.arn
+                14 |   handler       = "consume_func.lambda_handler"
+                15 | 
+                16 |   source_code_hash = data.archive_file.lambda_consume.output_base64sha256
+                17 | 
+                18 |   runtime = "python3.10"
+                19 | 
+                20 | }
+
+Check: CKV_AWS_115: "Ensure that AWS Lambda function is configured for function-level concurrent execution limit"
+        FAILED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit
+
+                31 | resource "aws_lambda_function" "consume_func_db" {
+                32 |   depends_on = [aws_db_instance.db_storage]
+                33 |   filename      = data.archive_file.lambda_consume_db.output_path
+                34 |   function_name = "consume_func_db"
+                35 |   role          = aws_iam_role.lambda_role.arn
+                36 |   handler       = "consume_func_db.lambda_handler"
+                37 | 
+                38 |   source_code_hash = data.archive_file.lambda_consume_db.output_base64sha256
+                39 | 
+                40 |   runtime = "python3.10"
+                41 | 
+                42 |   environment {
+                43 |     variables = {
+                44 |       DB_INSTANCE_ADDRESS = aws_db_instance.db_storage.address,
+                45 |       username = var.username
+                46 |       password = var.password
+                47 |       db_name = var.db_name
+                48 |     }
+                49 |   }
+                50 | 
+                51 |   vpc_config {
+                52 |   subnet_ids         = [var.subnet_id]
+                53 |   security_group_ids = [var.security_group_id]
+                54 |   }
+                55 | 
+                56 | }
+
+Check: CKV_AWS_272: "Ensure AWS Lambda function is configured to validate code-signing"
+        FAILED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+
+                31 | resource "aws_lambda_function" "consume_func_db" {
+                32 |   depends_on = [aws_db_instance.db_storage]
+                33 |   filename      = data.archive_file.lambda_consume_db.output_path
+                34 |   function_name = "consume_func_db"
+                35 |   role          = aws_iam_role.lambda_role.arn
+                36 |   handler       = "consume_func_db.lambda_handler"
+                37 | 
+                38 |   source_code_hash = data.archive_file.lambda_consume_db.output_base64sha256
+                39 | 
+                40 |   runtime = "python3.10"
+                41 | 
+                42 |   environment {
+                43 |     variables = {
+                44 |       DB_INSTANCE_ADDRESS = aws_db_instance.db_storage.address,
+                45 |       username = var.username
+                46 |       password = var.password
+                47 |       db_name = var.db_name
+                48 |     }
+                49 |   }
+                50 | 
+                51 |   vpc_config {
+                52 |   subnet_ids         = [var.subnet_id]
+                53 |   security_group_ids = [var.security_group_id]
+                54 |   }
+                55 | 
+                56 | }
+
+Check: CKV_AWS_116: "Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)"
+        FAILED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
+
+                31 | resource "aws_lambda_function" "consume_func_db" {
+                32 |   depends_on = [aws_db_instance.db_storage]
+                33 |   filename      = data.archive_file.lambda_consume_db.output_path
+                34 |   function_name = "consume_func_db"
+                35 |   role          = aws_iam_role.lambda_role.arn
+                36 |   handler       = "consume_func_db.lambda_handler"
+                37 | 
+                38 |   source_code_hash = data.archive_file.lambda_consume_db.output_base64sha256
+                39 | 
+                40 |   runtime = "python3.10"
+                41 | 
+                42 |   environment {
+                43 |     variables = {
+                44 |       DB_INSTANCE_ADDRESS = aws_db_instance.db_storage.address,
+                45 |       username = var.username
+                46 |       password = var.password
+                47 |       db_name = var.db_name
+                48 |     }
+                49 |   }
+                50 | 
+                51 |   vpc_config {
+                52 |   subnet_ids         = [var.subnet_id]
+                53 |   security_group_ids = [var.security_group_id]
+                54 |   }
+                55 | 
+                56 | }
+
+Check: CKV_AWS_173: "Check encryption settings for Lambda environmental variable"
+        FAILED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_serverless_5
+
+                31 | resource "aws_lambda_function" "consume_func_db" {
+                32 |   depends_on = [aws_db_instance.db_storage]
+                33 |   filename      = data.archive_file.lambda_consume_db.output_path
+                34 |   function_name = "consume_func_db"
+                35 |   role          = aws_iam_role.lambda_role.arn
+                36 |   handler       = "consume_func_db.lambda_handler"
+                37 | 
+                38 |   source_code_hash = data.archive_file.lambda_consume_db.output_base64sha256
+                39 | 
+                40 |   runtime = "python3.10"
+                41 | 
+                42 |   environment {
+                43 |     variables = {
+                44 |       DB_INSTANCE_ADDRESS = aws_db_instance.db_storage.address,
+                45 |       username = var.username
+                46 |       password = var.password
+                47 |       db_name = var.db_name
+                48 |     }
+                49 |   }
+                50 | 
+                51 |   vpc_config {
+                52 |   subnet_ids         = [var.subnet_id]
+                53 |   security_group_ids = [var.security_group_id]
+                54 |   }
+                55 | 
+                56 | }
+
+Check: CKV_AWS_50: "X-ray tracing is enabled for Lambda"
+        FAILED for resource: aws_lambda_function.consume_func_db
+        File: /consume_func_db.tf:31-56
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_serverless_4
+
+                31 | resource "aws_lambda_function" "consume_func_db" {
+                32 |   depends_on = [aws_db_instance.db_storage]
+                33 |   filename      = data.archive_file.lambda_consume_db.output_path
+                34 |   function_name = "consume_func_db"
+                35 |   role          = aws_iam_role.lambda_role.arn
+                36 |   handler       = "consume_func_db.lambda_handler"
+                37 | 
+                38 |   source_code_hash = data.archive_file.lambda_consume_db.output_base64sha256
+                39 | 
+                40 |   runtime = "python3.10"
+                41 | 
+                42 |   environment {
+                43 |     variables = {
+                44 |       DB_INSTANCE_ADDRESS = aws_db_instance.db_storage.address,
+                45 |       username = var.username
+                46 |       password = var.password
+                47 |       db_name = var.db_name
+                48 |     }
+                49 |   }
+                50 | 
+                51 |   vpc_config {
+                52 |   subnet_ids         = [var.subnet_id]
+                53 |   security_group_ids = [var.security_group_id]
+                54 |   }
+                55 | 
+                56 | }
+
+Check: CKV_AWS_16: "Ensure all data stored in the RDS is securely encrypted at rest"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/general_4
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_293: "Ensure that AWS database instances have deletion protection enabled"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_118: "Ensure that enhanced monitoring is enabled for Amazon RDS instances"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-enhanced-monitoring-is-enabled-for-amazon-rds-instances
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_157: "Ensure that RDS instances have Multi-AZ enabled"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/general_73
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_17: "Ensure all data stored in RDS is not publicly accessible"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/public_2
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_353: "Ensure that RDS instances have performance insights enabled"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_354: "Ensure RDS Performance Insights are encrypted using KMS CMKs"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_226: "Ensure DB instance gets all minor upgrades automatically"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/ensure-aws-db-instance-gets-all-minor-upgrades-automatically
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_161: "Ensure RDS database has IAM authentication enabled"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/ensure-rds-database-has-iam-authentication-enabled
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_129: "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-respective-logs-of-amazon-relational-database-service-amazon-rds-are-enabled
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_117: "Ensure that AWS Lambda function is configured inside a VPC"
+        FAILED for resource: aws_lambda_function.ingest_func
+        File: /ingest_func.tf:10-21
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1
+
+                10 | resource "aws_lambda_function" "ingest_func" {
+                11 | 
+                12 |   filename      = local.lambda_ingest_zip_location
+                13 |   function_name = "ingest_func"
+                14 |   role          = aws_iam_role.lambda_role.arn
+                15 |   handler       = "ingest_func.lambda_handler"
+                16 | 
+                17 |   source_code_hash = data.archive_file.lambda_ingest.output_base64sha256
+                18 | 
+                19 |   runtime = "python3.10"
+                20 | 
+                21 | }
+
+Check: CKV_AWS_115: "Ensure that AWS Lambda function is configured for function-level concurrent execution limit"
+        FAILED for resource: aws_lambda_function.ingest_func
+        File: /ingest_func.tf:10-21
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit
+
+                10 | resource "aws_lambda_function" "ingest_func" {
+                11 | 
+                12 |   filename      = local.lambda_ingest_zip_location
+                13 |   function_name = "ingest_func"
+                14 |   role          = aws_iam_role.lambda_role.arn
+                15 |   handler       = "ingest_func.lambda_handler"
+                16 | 
+                17 |   source_code_hash = data.archive_file.lambda_ingest.output_base64sha256
+                18 | 
+                19 |   runtime = "python3.10"
+                20 | 
+                21 | }
+
+Check: CKV_AWS_272: "Ensure AWS Lambda function is configured to validate code-signing"
+        FAILED for resource: aws_lambda_function.ingest_func
+        File: /ingest_func.tf:10-21
+
+                10 | resource "aws_lambda_function" "ingest_func" {
+                11 | 
+                12 |   filename      = local.lambda_ingest_zip_location
+                13 |   function_name = "ingest_func"
+                14 |   role          = aws_iam_role.lambda_role.arn
+                15 |   handler       = "ingest_func.lambda_handler"
+                16 | 
+                17 |   source_code_hash = data.archive_file.lambda_ingest.output_base64sha256
+                18 | 
+                19 |   runtime = "python3.10"
+                20 | 
+                21 | }
+
+Check: CKV_AWS_116: "Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)"
+        FAILED for resource: aws_lambda_function.ingest_func
+        File: /ingest_func.tf:10-21
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
+
+                10 | resource "aws_lambda_function" "ingest_func" {
+                11 | 
+                12 |   filename      = local.lambda_ingest_zip_location
+                13 |   function_name = "ingest_func"
+                14 |   role          = aws_iam_role.lambda_role.arn
+                15 |   handler       = "ingest_func.lambda_handler"
+                16 | 
+                17 |   source_code_hash = data.archive_file.lambda_ingest.output_base64sha256
+                18 | 
+                19 |   runtime = "python3.10"
+                20 | 
+                21 | }
+
+Check: CKV_AWS_50: "X-ray tracing is enabled for Lambda"
+        FAILED for resource: aws_lambda_function.ingest_func
+        File: /ingest_func.tf:10-21
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_serverless_4
+
+                10 | resource "aws_lambda_function" "ingest_func" {
+                11 | 
+                12 |   filename      = local.lambda_ingest_zip_location
+                13 |   function_name = "ingest_func"
+                14 |   role          = aws_iam_role.lambda_role.arn
+                15 |   handler       = "ingest_func.lambda_handler"
+                16 | 
+                17 |   source_code_hash = data.archive_file.lambda_ingest.output_base64sha256
+                18 | 
+                19 |   runtime = "python3.10"
+                20 | 
+                21 | }
+
+Check: CKV_AWS_43: "Ensure Kinesis Stream is securely encrypted"
+        FAILED for resource: aws_kinesis_stream.event_stream
+        File: /kinesis.tf:3-17
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_general_22
+
+                3  | resource "aws_kinesis_stream" "event_stream" {
+                4  |   name             = "event_stream"
+                5  |   shard_count      = 1
+                6  |   retention_period = 48
+                7  | 
+                8  |   shard_level_metrics = [
+                9  |     "IncomingBytes",
+                10 |     "OutgoingBytes",
+                11 |   ]
+                12 | 
+                13 |   stream_mode_details {
+                14 |     stream_mode = "PROVISIONED"
+                15 |   }
+                16 | 
+                17 | }
+Check: CKV_AWS_185: "Ensure Kinesis Stream is encrypted by KMS using a customer managed Key (CMK)"
+        FAILED for resource: aws_kinesis_stream.event_stream
+        File: /kinesis.tf:3-17
+        Guide: https://docs.bridgecrew.io/docs/bc_aws_general_105
+
+                3  | resource "aws_kinesis_stream" "event_stream" {
+                4  |   name             = "event_stream"
+                5  |   shard_count      = 1
+                6  |   retention_period = 48
+                7  | 
+                8  |   shard_level_metrics = [
+                9  |     "IncomingBytes",
+                10 |     "OutgoingBytes",
+                11 |   ]
+                12 | 
+                13 |   stream_mode_details {
+                14 |     stream_mode = "PROVISIONED"
+                15 |   }
+                16 | 
+                17 | }
+Check: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
+Check: CKV2_AWS_60: "Ensure RDS instance with copy tags to snapshots is enabled"
+        FAILED for resource: aws_db_instance.db_storage
+        File: /db.tf:1-12
+
+                1  | resource "aws_db_instance" "db_storage" {
+                2  |   allocated_storage    = 10
+                3  |   db_name              = var.db_name
+                4  |   engine               = "mysql"
+                5  |   engine_version       = "5.7"
+                6  |   instance_class       = "db.t3.micro"
+                7  |   username             = var.username
+                8  |   password             = var.password
+                9  |   parameter_group_name = "default.mysql5.7"
+                10 |   skip_final_snapshot  = true
+                11 |   publicly_accessible = true
+                12 | }
+Check: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/s3_13-enable-logging
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
+Check: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-s3-bucket-has-cross-region-replication-enabled
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
+Check: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
+Check: CKV2_AWS_62: "Ensure S3 buckets should have event notifications enabled"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
+Check: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
+Check: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+        FAILED for resource: aws_s3_bucket.consume-bucket
+        File: /s3.tf:3-6
+        Guide: https://docs.bridgecrew.io/docs/s3_16-enable-versioning
+
+                3 | resource "aws_s3_bucket" "consume-bucket" {
+                4 |   bucket = "consume-bucket"
+                5 | 
+                6 | }
